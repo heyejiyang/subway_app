@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:id="@+id/searchLayout"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:orientation="vertical">
+
+        <!-- 검색창을 위한 EditText -->
+        <EditText
+            android:id="@+id/editTextDeparture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="출발역을 입력하세요" />
+
+        <!-- 검색 버튼 -->
+        <EditText
+            android:id="@+id/editTextDestination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="도착역을 입력하세요" />
+        <Button
+            android:layout_gravity="right"
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색" />
+
+    </LinearLayout>
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
@@ -15,4 +48,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

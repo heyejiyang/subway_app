@@ -3,20 +3,28 @@ package com.example.subway
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.EditText
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
-    @SuppressLint("JavascriptInterface")
+    private lateinit var editTextDeparture: EditText
+    private lateinit var editTextDestination: EditText
+
+    @SuppressLint("JavascriptInterface", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         webView = findViewById(R.id.webview)
+        editTextDeparture = findViewById(R.id.editTextDeparture)
+        editTextDestination = findViewById(R.id.editTextDestination)
 
         val webSettings: WebSettings = webView.settings
 
@@ -67,6 +75,14 @@ class MainActivity : AppCompatActivity() {
         @android.webkit.JavascriptInterface
         fun handleTextClick(stationName: String){
             Log.d("webViewEvent","역이름클릭:$stationName")
+            runOnUiThread {
+                if (TextUtils.isEmpty(editTextDeparture.text)) {
+                    editTextDeparture.setText(stationName)
+                } else {
+                    editTextDestination.setText(stationName)
+                }
+            }
+            Toast.makeText(applicationContext,"Clicked:$stationName",Toast.LENGTH_LONG).show()
         }
     }
 }
